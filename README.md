@@ -7,4 +7,4 @@ need to handle scraping and sending info to these websites, and automating this 
 
 
 
-Libraries used: Time, PYPDF2, OS, Selenium( dynamic web scraper)
+Libraries used: Time, PYPDF2, OS, Selenium( dynamic web scraper), Tkinter, re(allows for searching for patterns(able to find names, number, email, etc.))
