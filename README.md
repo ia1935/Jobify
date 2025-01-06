@@ -7,4 +7,16 @@ need to handle scraping and sending info to these websites, and automating this 
 
 
 
-Libraries used: Time, PYPDF2, OS, Selenium( dynamic web scraper), Tkinter, re(allows for searching for patterns(able to find names, number, email, etc.))
+Libraries used: Time, PYPDF2, OS, Selenium( dynamic web scraper), Tkinter, 
+Using Pyreparser for resume parsing
+
+pip install spacy
+pip install spacy-transformers
+
+download english model:
+python -m spacy download en_core_web_sm
+
+pip install pydparser
+# nltk
+python -m nltk.downloader words
+python -m nltk.downloader stopwords
