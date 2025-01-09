@@ -31,6 +31,15 @@ def jobApplication(links:list):
         try:
             driver.get(link)
 
+
+            #waiting on page to load:
+            WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//form")))
+
+
+            #look and fill out info
+            driver.find_element(By.NAME,'name').send_keys(resume_data['name'])
+
         except:
             print("Error processing Link")
             linkIssues.append(link)
