@@ -65,6 +65,8 @@ resume_data={
     }
   }
 
+
+#this is the file path for our resume. Jobs ask for this so we need to keep file of it.
 resume_file = GetUserInfo()
 
 
