@@ -18,7 +18,7 @@ def main():
 
 #implementation of user input resume to parse and enter info in job link. For scalability in future for others to use this can be implemented
 
-    # #grabbing filename
+    #grabbing filename
     # file_name = GetUserInfo()
     # if not file_name:
     #     print("No File entered. Ending program")
