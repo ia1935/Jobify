@@ -7,6 +7,8 @@ from scraper import WebScraper, printLinks
 
 from dataRetrieval import GetUserInfo, resumeScraper
 
+from appFill import jobApplication
+
 
 def main():
 
@@ -32,6 +34,12 @@ def main():
     #     print("No data extracted.")
 
     applyLinks = WebScraper()
+
+    bad_links = jobApplication(applyLinks)
+
+    for link in bad_links:
+        print("These are the bad links, they may have additional pages that are unaccounted for or not submitted properly")
+        print(link)
 
     #need to now pass this array to my application function to apply for jobs
     

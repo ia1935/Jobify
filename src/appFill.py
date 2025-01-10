@@ -29,16 +29,39 @@ def jobApplication(links:list):
 
     for link in links:
         try:
+            #checking if there is an apply button we press prior to filling out our information or an apply link
             driver.get(link)
+            WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located((By.XPATH, "//form")))
 
 
-            #waiting on page to load:
-            WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//form")))
+
+            apply_elements = driver.find_elements(By.XPATH, "//*[self::button or self::a][contains(text(), 'Apply')]")
+            if apply_elements:
+                apply_elements[0].click()
+
+            
+            
+                #wait for form to load if happened
+
+                WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located((By.XPATH, "//form")))
+            
+
+            #Start the form filling...
+            driver.find_element(By.NAME, 'name').send_keys(resume_data['name'])
+            driver.find_element(By.NAME, 'email').send_keys(resume_data['email'])
+            driver.find_element(By.NAME, 'phone').send_keys(resume_data['phone'])
+
+            
+            submit_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[@type='submit']"))
+        )
+            submit_button.click()
 
 
-            #look and fill out info
-            driver.find_element(By.NAME,'name').send_keys(resume_data['name'])
+
+
 
         except:
             print("Error processing Link")
@@ -46,5 +69,6 @@ def jobApplication(links:list):
             continue
     
     return linkIssues
+
 
 
