@@ -13,6 +13,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 
+#going to categorize and apply for each job depending on its link.
+import re
 
 
 def jobApplication(links:list):
@@ -66,9 +68,46 @@ def jobApplication(links:list):
         except:
             print("Error processing Link")
             linkIssues.append(link)
+            input("Issue Occured, press enter when issue solved.")
             continue
     
     return linkIssues
 
 
 
+#function for Greenhouse.io jobs(Very easy to apply to thankfully)
+
+def greenhouse(link):
+    #link has the pattern greenhouse.io in the website
+
+    #format in this order:
+    # first
+    # last
+    # email
+    # phone
+    # resume
+    # education(
+    #     school
+    #     degree
+    #     discipline
+    #     start month/year
+    #     end month/year
+
+    # )
+    # program will have to pause for now when handling personal questions and application specific questions
+    None
+
+
+
+def lever(link):
+    # name jobs.lever.co
+    # format in this order
+
+    # resume
+    # full name 
+    # email
+    # phone
+    # linkedin Url   
+    # other website(github)
+    # grad date
+    None
