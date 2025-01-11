@@ -103,10 +103,7 @@ def jobApplication(links:list):
             #Start the form filling...
             try:
 
-                driver.find_element(By.NAME, 'name').send_keys(resume_data['name'])
-                driver.find_element(By.NAME, 'email').send_keys(resume_data['email'])
-                driver.find_element(By.NAME, 'phone').send_keys(resume_data['phone'])
-
+                #need to see what type of site it is for the proper function call:
                 
                 submit_button = WebDriverWait(driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, "//button[@type='submit']"))
@@ -159,7 +156,19 @@ def greenhouse(link):
     
     driver.find_element(By.NAME,'phone').send_keys(resume_data['phone'])
 
-    driver.find_element(By.NAME,"Resume/CV").send_keys(resume)
+    driver.find_element(By.NAME,"Resume/CV").send_keys(resume_file)
+
+    #inputting job info
+
+    for education in resume_data["education"]:
+
+      driver.find_element(By.NAME, "School").send_keys(education['university'])
+      driver.find_element(By.NAME,'Degree').send_keys(education['degree'])
+
+      driver.find_element(By.NAME,'Discipline').send_keys(education['degree'])
+      driver.find_element(By.NAME,'End Month/Year').send_keys(education['graduation_month'],education['graduation_year'])
+
+      
 
 
 
