@@ -70,6 +70,17 @@ resume_data={
 resume_file = GetUserInfo()
 
 
+def identify_platform(url):
+    patterns = {
+        "Workday": r"workdayjobs\.com|\.workday\.",
+        "Greenhouse": r"boards\.greenhouse\.io",
+        "Lever": r"lever\.co"
+    }
+    for platform, pattern in patterns.items():
+        if re.search(pattern, url):
+            return platform
+    return "Unknown"
+
 def jobApplication(links:list):
 
     
@@ -81,13 +92,23 @@ def jobApplication(links:list):
 
     for link in links:
         try:
-            #checking if there is an apply button we press prior to filling out our information or an apply link
+            
+            
+          
+            platform = identify_platform(link)
+            print(f"URL: {link}\nPlatform: {platform}\n")
+            if platform == "Unknown":  # Pause on unknown platform
+                print("Pausing for manual intervention...")
+                input("Press Enter to continue after resolving the issue.")
+
+
+
+            #Checking if there is an apply button we press prior to filling out our information or an apply link
             driver.get(link)
             WebDriverWait(driver, 5).until(
                     EC.presence_of_element_located((By.XPATH, "//form")))
-
-
-
+            
+            
             apply_elements = driver.find_elements(By.XPATH, "//*[self::button or self::a][contains(text(), 'Apply')]")
             if apply_elements:
                 apply_elements[0].click()
@@ -104,7 +125,7 @@ def jobApplication(links:list):
             try:
 
                 #need to see what type of site it is for the proper function call:
-                
+
                 submit_button = WebDriverWait(driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, "//button[@type='submit']"))
             )
